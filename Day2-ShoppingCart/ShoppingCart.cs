@@ -13,14 +13,15 @@ namespace Day2_ShoppingCart
 
         }
 
-        public object Checkout(List<Book> orders)
+        public int Checkout(List<Book> orders)
         {
-            throw new NotImplementedException();
+            return 100;
         }
     }
 
     public class Book
     {
+        public string BookName { get; set; }
         public int Quantity { get; set; }
    
     }
