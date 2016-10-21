@@ -49,6 +49,7 @@ namespace Day2_ShoppingCart
     {
         OneBook = 100,
         TowBook = 95,
-        ThreeBook = 90
+        ThreeBook = 90,
+        FourBook = 85
     }
 }
