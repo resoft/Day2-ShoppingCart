@@ -124,6 +124,24 @@ namespace Day2_ShoppingCart.Tests
 
             Assert.AreEqual(expected, actual);
         }
+
+
+        [TestMethod()]
+        public void ShoppingCart_Of_Potter_1_Buy_Book_1_Potter_2_Buy_Book_2_Potter_3_Buy_Book_2_Potter_4_Buy_Book_5_Should_Be_890()
+        {
+            var expected = 890;
+            var orders = new List<Book>()
+            {
+                  new Book { BookName = "Potter_1", Quantity = 1 },
+                  new Book {BookName = "Potter_2", Quantity = 2 },
+                  new Book {BookName = "Potter_3", Quantity = 2 },
+                  new Book {BookName = "Potter_4", Quantity = 5 }
+            };
+
+            var actual = orders.Checkout();
+
+            Assert.AreEqual(expected, actual);
+        }
     }
 
 
