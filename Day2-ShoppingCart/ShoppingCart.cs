@@ -26,6 +26,9 @@ namespace Day2_ShoppingCart
                 case 2:
                     discount = (int)BookDiscount.TowBook;
                     break;
+                case 3:
+                    discount = (int)BookDiscount.ThreeBook;
+                    break;
                 default:
                     break;
             }
@@ -45,6 +48,7 @@ namespace Day2_ShoppingCart
     public enum BookDiscount
     {
         OneBook = 100,
-        TowBook = 95
+        TowBook = 95,
+        ThreeBook = 90
     }
 }
