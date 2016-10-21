@@ -33,6 +33,7 @@ namespace Day2_ShoppingCart
                     discount = (int)BookDiscount.FourBook;
                     break;
                 default:
+                    discount = (int)BookDiscount.FiveBook;
                     break;
             }
         
@@ -53,6 +54,7 @@ namespace Day2_ShoppingCart
         OneBook = 100,
         TowBook = 95,
         ThreeBook = 90,
-        FourBook = 80
+        FourBook = 80,
+        FiveBook = 75
     }
 }
