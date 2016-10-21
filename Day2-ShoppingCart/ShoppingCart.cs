@@ -16,28 +16,39 @@ namespace Day2_ShoppingCart
         public int Checkout(List<Book> orders)
         {
             int price = 100;
-            int bookCount = orders.Count();
-            int discount=100;
-            switch (bookCount)
+            int maxBookCount = orders.Max(x => x.Quantity);
+            int totalPrice = 0;
+            int i = 0;
+            while (maxBookCount > 0)
             {
-                case 1:
-                    discount = (int)BookDiscount.OneBook;
-                    break;
-                case 2:
-                    discount = (int)BookDiscount.TowBook;
-                    break;
-                case 3:
-                    discount = (int)BookDiscount.ThreeBook;
-                    break;
-                case 4:
-                    discount = (int)BookDiscount.FourBook;
-                    break;
-                default:
-                    discount = (int)BookDiscount.FiveBook;
-                    break;
+                int bookCount = orders.Where(x => (x.Quantity - i) >= maxBookCount).Count();
+
+                int discount = 100;
+
+                switch (bookCount)
+                {
+                    case 1:
+                        discount = (int)BookDiscount.OneBook;
+                        break;
+                    case 2:
+                        discount = (int)BookDiscount.TowBook;
+                        break;
+                    case 3:
+                        discount = (int)BookDiscount.ThreeBook;
+                        break;
+                    case 4:
+                        discount = (int)BookDiscount.FourBook;
+                        break;
+                    default:
+                        discount = (int)BookDiscount.FiveBook;
+                        break;
+                }
+
+                totalPrice += ((bookCount * price) / 100) * discount;
+
+                maxBookCount = maxBookCount - 1;
             }
-        
-            int totalPrice = ((bookCount * price) / 100) * discount;
+
             return totalPrice;
         }
     }
