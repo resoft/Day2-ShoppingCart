@@ -29,6 +29,9 @@ namespace Day2_ShoppingCart
                 case 3:
                     discount = (int)BookDiscount.ThreeBook;
                     break;
+                case 4:
+                    discount = (int)BookDiscount.FourBook;
+                    break;
                 default:
                     break;
             }
@@ -50,6 +53,6 @@ namespace Day2_ShoppingCart
         OneBook = 100,
         TowBook = 95,
         ThreeBook = 90,
-        FourBook = 85
+        FourBook = 80
     }
 }
