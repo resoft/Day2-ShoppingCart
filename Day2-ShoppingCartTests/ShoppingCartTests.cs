@@ -20,7 +20,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {Quantity = 1 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -36,7 +36,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {BookName = "Potter_2", Quantity = 1 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -52,7 +52,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {BookName = "Potter_3", Quantity = 1 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -69,7 +69,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {BookName = "Potter_4", Quantity = 1 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -87,7 +87,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {BookName = "Potter_5", Quantity = 1 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -104,7 +104,7 @@ namespace Day2_ShoppingCart.Tests
             };
 
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -120,7 +120,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {BookName = "Potter_3", Quantity = 2 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }
@@ -138,7 +138,7 @@ namespace Day2_ShoppingCart.Tests
                   new Book {BookName = "Potter_4", Quantity = 5 }
             };
 
-            var actual = orders.Checkout();
+            var actual = new ShoppingCart(orders).Checkout();
 
             Assert.AreEqual(expected, actual);
         }

@@ -6,28 +6,54 @@ using System.Threading.Tasks;
 
 namespace Day2_ShoppingCart
 {
-    public static class ShoppingCart
+    public class ShoppingCart
     {
+        /// <summary>
+        /// The discounts
+        /// </summary>
+        private Dictionary<int, double> _discounts;
+        /// <summary>
+        /// The orders
+        /// </summary>
+        private IEnumerable<Book> _orders;
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ShoppingCart"/> class.
+        /// </summary>
+        /// <param name="orders">The orders.</param>
+        public ShoppingCart(IEnumerable<Book> orders)
+        {
+            this._orders = orders;
+
+            this._discounts = new Dictionary<int, double>() {
+                 {1, 1},
+                 {2, 0.95},
+                 {3, 0.9},
+                 {4, 0.80},
+                 {5, 0.75}
+            };
+        }
+
         /// <summary>
         /// Checkouts the specified orders.
         /// </summary>
         /// <param name="orders">The orders.</param>
         /// <returns></returns>
-        public static int Checkout(this IEnumerable<Book> orders)
+        public int Checkout()
         {
             int price = 100;
-            int maxBookCount = orders.Max(x => x.Quantity);
+            int maxBookCount = this._orders.Max(x => x.Quantity);
             int totalPrice = 0;
-            int i = 0;
+            //int i = 0;
             while (maxBookCount > 0)
             {
-                int bookCount = orders.Where(x => (x.Quantity - i) >= maxBookCount).Count();
+                int bookCount = this._orders.Where(x => (x.Quantity) >= maxBookCount).Count();
 
-                int discount = GetDisscount(bookCount);
+                var discount = GetDisscount(bookCount);
 
-                totalPrice += ((bookCount * price) / 100) * discount;
+                totalPrice += Convert.ToInt16((bookCount * price) * discount);
 
-                maxBookCount = maxBookCount - 1;
+                maxBookCount -= 1;
             }
 
             return totalPrice;
@@ -38,27 +64,30 @@ namespace Day2_ShoppingCart
         /// </summary>
         /// <param name="bookCount">The book count.</param>
         /// <returns></returns>
-        private static int GetDisscount(int bookCount)
+        private double GetDisscount(int bookCount)
         {
-            int discount;
-            switch (bookCount)
-            {
-                case 1:
-                    discount = (int)BookDiscount.OneBook;
-                    break;
-                case 2:
-                    discount = (int)BookDiscount.TowBook;
-                    break;
-                case 3:
-                    discount = (int)BookDiscount.ThreeBook;
-                    break;
-                case 4:
-                    discount = (int)BookDiscount.FourBook;
-                    break;
-                default:
-                    discount = (int)BookDiscount.FiveBook;
-                    break;
-            }
+            if (bookCount > 5) bookCount = 5;
+            var discount = this._discounts[bookCount];
+
+            //int discount;
+            //switch (bookCount)
+            //{
+            //    case 1:
+            //        discount = (int)BookDiscount.OneBook;
+            //        break;
+            //    case 2:
+            //        discount = (int)BookDiscount.TowBook;
+            //        break;
+            //    case 3:
+            //        discount = (int)BookDiscount.ThreeBook;
+            //        break;
+            //    case 4:
+            //        discount = (int)BookDiscount.FourBook;
+            //        break;
+            //    default:
+            //        discount = (int)BookDiscount.FiveBook;
+            //        break;
+            //}
 
             return discount;
         }
@@ -71,13 +100,13 @@ namespace Day2_ShoppingCart
         public int Quantity { get; set; }
 
     }
-    
-    public enum BookDiscount
-    {
-        OneBook = 100,
-        TowBook = 95,
-        ThreeBook = 90,
-        FourBook = 80,
-        FiveBook = 75
-    }
+
+    //public enum BookDiscount
+    //{
+    //    OneBook = 100,
+    //    TwoBook = 95,
+    //    ThreeBook = 90,
+    //    FourBook = 80,
+    //    FiveBook = 75
+    //}
 }
